@@ -10,3 +10,8 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
         total_students += 1  # Count each data row
 
 print(f"Total number of students: {total_students}")
+
+print("Dataset columns:")
+for header in header:
+        print(header)
+
