@@ -67,3 +67,17 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
         print(f"Lowest hours studied: {lowest_hours_studied}")
         
     
+#Number of students who scored 80 or above.
+with open("StudentPerformanceFactors.csv", "r", newline="") as file:
+    reader = csv.reader(file)
+    header = next(reader)  # Read the header row
+    score_index = header.index("Exam_Score")
+    
+    students_scored_80_or_above = 0
+
+    for row in reader:
+        score = int(row[score_index])
+        if score >= 80:
+            students_scored_80_or_above += 1
+
+    print(f"Number of students who scored 80 or above: {students_scored_80_or_above}")
