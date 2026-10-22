@@ -37,6 +37,7 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
     #finding Average of hours studied
     for row in reader:
          hours_studied = int(row[hours_studied_index])
+         max_hours_studied = max(hours_studied, total_hours_studied)
          total_hours_studied += hours_studied
          total_students += 1
     print(f"Total students: {total_students}")
@@ -45,4 +46,24 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
         average_hours_studied = total_hours_studied / total_students
     print(f"Average hours studied: {average_hours_studied}")
 
-    #finding highest and lowest Hours_Studied values.
+
+#finding highest and lowest Hours_Studied values.
+with open("StudentPerformanceFactors.csv", "r", newline="") as file:
+    reader = csv.reader(file)
+    header = next(reader)  # Read the header row
+    hours_studied_index = header.index("Hours_Studied")
+    hours_list = []
+
+    for row in reader:
+        hours_studied = int(row[hours_studied_index])
+        hours_list.append(hours_studied)
+
+    if len(hours_list) == 0:
+        print("No data available to calculate highest and lowest hours studied.")
+    else:
+        highest_hours_studied = max(hours_list)
+        lowest_hours_studied = min(hours_list)
+        print(f"Highest hours studied: {highest_hours_studied}")
+        print(f"Lowest hours studied: {lowest_hours_studied}")
+        
+    
