@@ -12,6 +12,11 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
 print(f"Total number of students: {total_students}")
 
 print("Dataset columns:")
-for header in header:
-        print(header)
+for column in header:
+        print(column)
+
+print() #start new line  
+
+hours_studied_index = header.index("Hours_Studied")
+print(f"Index of Hours_Studied: {hours_studied_index}") 
 
