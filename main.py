@@ -4,19 +4,23 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
     reader = csv.reader(file)
     header = next(reader)  # Read the header row
     print(header)  # Print the header row
-    total_students = 0
+    
+    # total_students = 0
+    # for row in reader:
+    #     total_students += 1  # Count each data row
+    # print(f"Total number of students: {total_students}")
 
-    for row in reader:
-        total_students += 1  # Count each data row
+    print("Dataset columns:")
+    for column in header:
+            print(column)
 
-print(f"Total number of students: {total_students}")
+    print() #start new line  
 
-print("Dataset columns:")
-for column in header:
-        print(column)
+    hours_studied_index = header.index("Hours_Studied")
+    print(f"Index of Hours_Studied: {hours_studied_index}") 
 
-print() #start new line  
-
-hours_studied_index = header.index("Hours_Studied")
-print(f"Index of Hours_Studied: {hours_studied_index}") 
-
+    print("Study hours of first 5 students:")
+    for i in range(5):
+        row = next(reader)
+        print(row[hours_studied_index])  # Print the Hours_Studied value for each of the first 5 students
+     
