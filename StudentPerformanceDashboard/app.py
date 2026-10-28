@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import streamlit as st
 import csv
 
@@ -88,7 +89,7 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
         st.metric("Average exam score:", f"{average_score:.4f}")
 
 
-#finding highest and exam score values.
+#finding highest and lowest exam score values.
 with open("StudentPerformanceFactors.csv", "r", newline="") as file:
     reader = csv.reader(file)
     header = next(reader)  # Read the header row
@@ -108,3 +109,32 @@ with open("StudentPerformanceFactors.csv", "r", newline="") as file:
         with col2:
             st.metric("Highest exam score:", highest_exam_score)
             st.metric("Lowest exam score:", lowest_exam_score)
+
+#bar chart for Students by Study Hours
+with open("StudentPerformanceFactors.csv", "r", newline="") as file:
+    reader = csv.reader(file)
+    header = next(reader)
+    hours_studied_index = header.index("Hours_Studied")
+    total_hours_studied = 0
+    hours_count = {}
+
+    for row in reader:
+        hours_studied = int(row[hours_studied_index])
+
+        if hours_studied in hours_count:
+            hours_count[hours_studied] += 1
+        else:
+            hours_count[hours_studied] = 1
+
+        total_hours_studied += hours_studied
+        total_students += 1
+st.subheader("Students by Hours Studied")
+fig, ax = plt.subplots()
+ax.bar(hours_count.keys(), hours_count.values())
+
+ax.set_xlabel("Hours Studied")
+ax.set_ylabel("Number of Students")
+ax.set_title("Student by Hours Studied")
+
+st.pyplot(fig)
+plt.close(fig)
